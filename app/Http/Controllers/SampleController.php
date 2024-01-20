@@ -10,4 +10,9 @@ class SampleController extends Controller
     {
         return 'Welcome to Laravel Test Project!';
     }
+
+    public function new_page()
+    {
+        return 'New page!';
+    }
 }
