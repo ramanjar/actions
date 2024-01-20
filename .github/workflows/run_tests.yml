@@ -21,7 +21,7 @@ jobs:
     - name: Copy sample env file
       run: cp .env.example .env
 
-    - name: Install App key
+    - name: Install App key 2
       run: php artisan key:generate
 
     - name: Run Tests
