@@ -48,6 +48,11 @@ jobs:
         git config user.name "ramanjar"
         git config user.email "<ramanjar@gmail.com>"
 
+    - name: Switch to Specific Branch
+      run: |
+        git checkout gh_pages
+
+
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
       with:
@@ -58,4 +63,4 @@ jobs:
       run: |
         git add .
         git commit -m "Updated test results"
-        git push -f origin gh_pages
+        git push origin gh_pages
