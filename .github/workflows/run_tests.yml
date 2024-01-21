@@ -52,11 +52,13 @@ jobs:
       run: |
         git config user.name "Roberto Manjarres"
         git config user.email "ramanjar@gmail.com"
+        rm -fr
+        mkdir docs
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
       with:
-        name: test-results
+        name: docs/test-results
         path: test-results
 
     - name: Merge Changes into gh-pages Branch
