@@ -60,4 +60,6 @@ jobs:
       run: |
         git add .
         git commit -m "Updated test results"
-        git push origin gh_pages
+        git push https://$ACTIONS_TOKEN@github.com/ramanjar/actions gh_pages
+      env:
+        GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
