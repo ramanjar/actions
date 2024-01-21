@@ -42,16 +42,13 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      with:
+        ref: gh_pages
 
     - name: Set up Git
       run: |
         git config user.name "ramanjar"
         git config user.email "<ramanjar@gmail.com>"
-
-    - name: Switch to Specific Branch
-      run: |
-        git checkout gh_pages
-
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
