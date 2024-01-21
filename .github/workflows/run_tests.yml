@@ -49,7 +49,9 @@ jobs:
       run: |
         git config user.name "Roberto Manjarres"
         git config user.email "ramanjar@gmail.com"
-        git remote set-url origin https://ramanjar:${{ secrets.ACTIONS_TOKEN }}@github.com/ramanjar/actions.git
+        git remote set-url origin https://ramanjar:$ACTIONS_TOKEN@github.com/ramanjar/actions.git
+      env:
+        ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
