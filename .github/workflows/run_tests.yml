@@ -58,8 +58,8 @@ jobs:
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
       with:
-        name: docs/test-results
-        path: test-results
+        name: test-results
+        path: docs/test-results
 
     - name: Merge Changes into gh-pages Branch
       run: |
