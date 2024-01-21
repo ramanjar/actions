@@ -3,7 +3,7 @@ name: Laravel Test
 on: [push, pull_request]
 
 jobs:
-  test:
+  run_tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,12 +25,33 @@ jobs:
       run: php artisan key:generate
 
     - name: Run Tests
-      run: php artisan test --coverage-html coverage
+      run: php artisan test --coverage-html test-results --log-junit test-results/junit.xml
       env:
         XDEBUG_MODE: coverage
 
     - name: Upload Code Coverage Report
       uses: actions/upload-artifact@v2
       with:
-        name: code-coverage
-        path: coverage
+        name: test-results
+        path: test-results
+
+  push_to_gh_pages:
+    needs: run_tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config user.name "ramanjar"
+        git config user.email "<ramanjar@gmail.com>"
+
+    - name: Merge Changes into gh-pages Branch
+      run: |
+        git checkout -B gh-pages
+        git rm -rf .
+        git checkout main test-results
+        git commit -m "Update test results"
+        git push -f origin gh-pages
