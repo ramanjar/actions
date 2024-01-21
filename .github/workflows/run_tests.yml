@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
@@ -52,8 +52,6 @@ jobs:
       run: |
         git config user.name "Roberto Manjarres"
         git config user.email "ramanjar@gmail.com"
-      env:
-        ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
