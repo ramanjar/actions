@@ -59,10 +59,12 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: test-results
-        path: docs/test-results
+        path: test-results
 
     - name: Merge Changes into gh-pages Branch
       run: |
+        cp -r test-results/* docs/
+        rm -fr test-results
         git add .
         git commit -m "Updated test results"
         git push
