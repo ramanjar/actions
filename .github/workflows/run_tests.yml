@@ -48,10 +48,18 @@ jobs:
         git config user.name "ramanjar"
         git config user.email "<ramanjar@gmail.com>"
 
+    - name: Checkout gh-pages Branch
+      run: |
+        git checkout gh-pages
+
+    - name: Download Code Coverage Report
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+        path: test-results
+
     - name: Merge Changes into gh-pages Branch
       run: |
-        git checkout -B gh-pages
-        git rm -rf .
-        git checkout main test-results
-        git commit -m "Update test results"
-        git push -f origin gh-pages
+        git add .
+        git commit -m "Updated test results"
+        git push
