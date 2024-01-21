@@ -50,7 +50,7 @@ jobs:
 
     - name: Checkout gh-pages Branch
       run: |
-        git checkout 'gh-pages'
+        git switch gh_pages
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
