@@ -31,7 +31,7 @@
         <ini name="display_errors" value="true"/>
         <ini name="xdebug.mode" value="coverage"/>
     </php>
-    <logging>
+    <!-- <logging>
         <log type="junit" target="test-results/junit.xml"/>
-    </logging>
+    </logging> -->
 </phpunit>
