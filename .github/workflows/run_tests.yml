@@ -53,7 +53,6 @@ jobs:
         git config user.name "Roberto Manjarres"
         git config user.email "ramanjar@gmail.com"
         git rm -rf .
-        mkdir docs
 
     - name: Download Code Coverage Report
       uses: actions/download-artifact@v2
@@ -63,8 +62,13 @@ jobs:
 
     - name: Merge Changes into gh-pages Branch
       run: |
-        cp -r test-results/* docs/
-        rm -fr test-results
+        find test-results -type f -name "*.html" -exec sed -i 's/_icons/.\/icons/g' {} +
+        find test-results -type f -name "*.html" -exec sed -i 's/_css/.\/css/g' {} +
+        find test-results -type f -name "*.html" -exec sed -i 's/_js/.\/js/g' {} +
+        mv test-results/_css test-results/css
+        mv test-results/_icons test-results/icons
+        mv test-results/_js test-results/js
+        mv test-results docs
         git add .
         git commit -m "Updated test results"
         git push
